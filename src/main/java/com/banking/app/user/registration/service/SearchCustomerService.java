@@ -1,26 +1,25 @@
 package com.banking.app.user.registration.service;
 
 import com.banking.app.user.registration.bo.CustomerIdentityProof;
-import com.banking.app.user.registration.repository.SearchCustomerRepository;
+import com.banking.app.user.registration.repository.IdentityProofInfoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.Objects;
 import java.util.Optional;
 @Service
 public class SearchCustomerService {
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchCustomerService.class);
 
-    private SearchCustomerRepository searchCustomerRepository;
+    private IdentityProofInfoRepository identityProofInfoRepository;
     @Autowired
-    public SearchCustomerService(final SearchCustomerRepository searchCustomerRepository){
-        this.searchCustomerRepository = searchCustomerRepository;
+    public SearchCustomerService(final IdentityProofInfoRepository identityProofInfoRepository){
+        this.identityProofInfoRepository = identityProofInfoRepository;
     }
 
-    public Optional<CustomerIdentityProof> searchCustomer(BigInteger aadharNumber, String panNumber, String voterId, String passportNumber) {
+    public Optional<CustomerIdentityProof> searchCustomer(String aadharNumber, String panNumber, String voterId, String passportNumber) {
         Optional<CustomerIdentityProof> customer;
 
         if (Objects.nonNull(aadharNumber)){
@@ -44,20 +43,20 @@ public class SearchCustomerService {
     }
 
 
-    private Optional<CustomerIdentityProof> checkCustomerByAadharNumber(BigInteger aadharNumber) {
-        return searchCustomerRepository.findCustomerByAadharNumber(aadharNumber);
+    private Optional<CustomerIdentityProof> checkCustomerByAadharNumber(String aadharNumber) {
+        return identityProofInfoRepository.findCustomerByAadharNumber(aadharNumber);
     }
 
     private Optional<CustomerIdentityProof> checkCustomerByPassportNumber(String passportNumber) {
-        return searchCustomerRepository.findCustomerByPassportNumber(passportNumber);
+        return identityProofInfoRepository.findCustomerByPassportNumber(passportNumber);
     }
 
     private Optional<CustomerIdentityProof> checkCustomerByVoterId(String voterId) {
-       return searchCustomerRepository.findCustomerByVoterIdNumber(voterId);
+       return identityProofInfoRepository.findCustomerByVoterIdNumber(voterId);
     }
 
     public Optional<CustomerIdentityProof> checkCustomerByPanNumber(String panNumber) {
-        return searchCustomerRepository.findCustomerByPanNumber(panNumber);
+        return identityProofInfoRepository.findCustomerByPanNumber(panNumber);
 
     }
 }

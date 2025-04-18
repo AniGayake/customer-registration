@@ -25,7 +25,6 @@ public class ContactInformationService {
     public ContactInformation registerContactInformation(@RequestBody final ContactInformationRequest contactInformationRequest){
         LOGGER.info("Entering registerContactInformation");
         ContactInformation contactInformation = populateContactInformation(contactInformationRequest);
-
         ContactInformation registeredContactInformation = contactInformationRepository.save(contactInformation);
         if(Objects.nonNull(registeredContactInformation.getContactId())){
             LOGGER.info("Exiting registerContactInformation");

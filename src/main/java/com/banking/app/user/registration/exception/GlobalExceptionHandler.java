@@ -1,9 +1,6 @@
 package com.banking.app.user.registration.exception;
 
-import com.banking.app.user.registration.exception.customExceptions.ContactRegistrationException;
-import com.banking.app.user.registration.exception.customExceptions.CustomerRegistrationException;
-import com.banking.app.user.registration.exception.customExceptions.DuplicateCusomerException;
-import com.banking.app.user.registration.exception.customExceptions.MissingPANNumberException;
+import com.banking.app.user.registration.exception.customExceptions.*;
 import com.banking.app.user.registration.exception.entity.ErrorMessage;
 import org.hibernate.QueryParameterException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -56,6 +53,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ContactRegistrationException.class)
     public ResponseEntity<ErrorMessage> handleContactRegistrationException(final ContactRegistrationException exception){
         ErrorMessage errorMessage = new ErrorMessage("Contact Information Registration Error",HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
+        return new ResponseEntity<>(errorMessage,HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(KYCRegistrationException.class)
+    public ResponseEntity<ErrorMessage> handleKYCRegistrationException(final KYCRegistrationException exception){
+        ErrorMessage errorMessage = new ErrorMessage("KYC Registration Error",HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
         return new ResponseEntity<>(errorMessage,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

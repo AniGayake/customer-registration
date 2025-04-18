@@ -3,13 +3,13 @@ package com.banking.app.user.registration.web;
 import com.banking.app.user.registration.bo.Address;
 import com.banking.app.user.registration.bo.ContactInformation;
 import com.banking.app.user.registration.bo.Customer;
-import com.banking.app.user.registration.dto.AddressRequest;
-import com.banking.app.user.registration.dto.ContactInformationRequest;
-import com.banking.app.user.registration.dto.CustomerRequest;
+import com.banking.app.user.registration.bo.KYCDetails;
+import com.banking.app.user.registration.dto.*;
 import com.banking.app.user.registration.exception.customExceptions.DuplicateCusomerException;
 import com.banking.app.user.registration.service.AddressService;
 import com.banking.app.user.registration.service.ContactInformationService;
 import com.banking.app.user.registration.service.CustomerService;
+import com.banking.app.user.registration.service.KYCService;
 import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,12 +26,14 @@ public class CustomerController {
     private final CustomerService customerService;
     private final ContactInformationService contactInformationService;
     private final AddressService addressService;
+    private final KYCService kycService;
 
     @Autowired
-    public CustomerController(final CustomerService customerService,final ContactInformationService contactInformationService,final AddressService addressService){
+    public CustomerController(final CustomerService customerService,final ContactInformationService contactInformationService,final AddressService addressService,final KYCService kycService){
         this.customerService= customerService;
         this.contactInformationService= contactInformationService;
         this.addressService= addressService;
+        this.kycService = kycService;
     }
     @PostMapping("/personal-info")
     public ResponseEntity<Customer> registerCustomer(final @RequestBody CustomerRequest customerRequest) throws DuplicateCusomerException {
@@ -58,4 +60,16 @@ public class CustomerController {
 
     }
 
+    @PostMapping("/kyc-info")
+    public ResponseEntity<KYCDetails> registerCustomerKYC(final @RequestBody KYCDetailsRequest kycDetailsRequest){
+        LOGGER.info("Entering into registerCustomerKYC to register KYC details with details {}",kycDetailsRequest);
+        KYCDetails kycDetails = kycService.customerKYC(kycDetailsRequest);
+        LOGGER.info("Exiting into registerCustomerKYC to register KYC details with details {}",kycDetails);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(kycDetails);
+    }
+    @GetMapping("/hey")
+    public void hey(){
+        System.out.println(KYCIdType.getKycIdType("1"));
+    }
 }

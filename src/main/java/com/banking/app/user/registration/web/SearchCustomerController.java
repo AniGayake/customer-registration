@@ -29,7 +29,7 @@ public class SearchCustomerController {
     }
 
     @GetMapping("/searchCustomerInSystem")
-    public ResponseEntity<CustomerIdentityProof> checkIfUserAlreadyExistsInSystem(@RequestParam(value = "aadharNumber",required = false) BigInteger aadharNumber,
+    public ResponseEntity<CustomerIdentityProof> checkIfUserAlreadyExistsInSystem(@RequestParam(value = "aadharNumber",required = false) String aadharNumber,
                                                            @RequestParam(value = "panNumber",required = false) String panNumber,
                                                            @RequestParam(value = "voterId",required = false) String voterId,
                                                            @RequestParam(value = "passportNumber",required = false) String passportNumber){
@@ -40,7 +40,7 @@ public class SearchCustomerController {
         return customer.map(customerIdentityProof -> ResponseEntity.status(HttpStatus.OK).body(customerIdentityProof)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
     }
 
-    private void checkForAtLeastOneRequestParameter(BigInteger aadharNumber, String panNumber, String voterId, String passportNumber) {
+    private void checkForAtLeastOneRequestParameter(String aadharNumber, String panNumber, String voterId, String passportNumber) {
         if(Objects.isNull(aadharNumber)&&Objects.isNull(panNumber)&& Objects.isNull(voterId)&&Objects.isNull(passportNumber)){
             LOGGER.error("No Query parameter provided in the request");
             throw new QueryParameterException("Please pass Aadhar or PAN or Voter or Passport Number as Query Parameter");

@@ -2,10 +2,7 @@ package com.banking.app.user.registration.bo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigInteger;
 import java.util.Objects;
@@ -15,10 +12,10 @@ import java.util.Objects;
 @Table(name = "identity_proof_info")
 public class CustomerIdentityProof {
     @Id
-    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer identityProofId;
-    private Integer customerId;
-    private BigInteger aadharNumber;
+    private Long customerId;
+    private String aadharNumber;
     private String panNumber;
     private String voterIdNumber;
     private String passportNumber;
@@ -27,19 +24,23 @@ public class CustomerIdentityProof {
         return identityProofId;
     }
 
-    public Integer getCustomerId() {
+    public void setIdentityProofId(Integer identityProofId) {
+        this.identityProofId = identityProofId;
+    }
+
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
-    public BigInteger getAadharNumber() {
+    public String getAadharNumber() {
         return aadharNumber;
     }
 
-    public void setAadharNumber(BigInteger aadharNumber) {
+    public void setAadharNumber(String aadharNumber) {
         this.aadharNumber = aadharNumber;
     }
 
