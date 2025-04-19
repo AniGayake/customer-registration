@@ -1,7 +1,7 @@
 package com.banking.app.user.registration.service;
 
 import com.banking.app.user.registration.bo.ContactInformation;
-import com.banking.app.user.registration.dto.ContactInformationRequest;
+import com.banking.app.user.registration.dto.request.ContactInformationRequest;
 import com.banking.app.user.registration.exception.customExceptions.ContactRegistrationException;
 import com.banking.app.user.registration.repository.ContactInformationRepository;
 import org.slf4j.Logger;

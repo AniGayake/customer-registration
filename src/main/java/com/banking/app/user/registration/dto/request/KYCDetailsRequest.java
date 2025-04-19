@@ -1,4 +1,4 @@
-package com.banking.app.user.registration.dto;
+package com.banking.app.user.registration.dto.request;
 
 import java.time.LocalDate;
 

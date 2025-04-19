@@ -1,4 +1,4 @@
-package com.banking.app.user.registration.dto;
+package com.banking.app.user.registration.dto.request;
 
 public class ContactInformationRequest {
     private Long customerId;

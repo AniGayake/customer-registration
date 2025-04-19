@@ -1,6 +1,4 @@
-package com.banking.app.user.registration.dto;
-
-import jakarta.persistence.Column;
+package com.banking.app.user.registration.dto.request;
 
 public class AddressRequest {
     private Long customerId;

@@ -2,7 +2,7 @@ package com.banking.app.user.registration.service;
 
 import com.banking.app.user.registration.bo.CustomerIdentityProof;
 import com.banking.app.user.registration.bo.KYCDetails;
-import com.banking.app.user.registration.dto.KYCDetailsRequest;
+import com.banking.app.user.registration.dto.request.KYCDetailsRequest;
 import com.banking.app.user.registration.exception.customExceptions.KYCRegistrationException;
 import com.banking.app.user.registration.repository.KYCRepository;
 import com.banking.app.user.registration.repository.IdentityProofInfoRepository;

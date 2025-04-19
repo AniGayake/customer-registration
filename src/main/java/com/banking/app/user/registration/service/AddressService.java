@@ -1,7 +1,7 @@
 package com.banking.app.user.registration.service;
 
 import com.banking.app.user.registration.bo.Address;
-import com.banking.app.user.registration.dto.AddressRequest;
+import com.banking.app.user.registration.dto.request.AddressRequest;
 import com.banking.app.user.registration.repository.AddressRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,22 +1,19 @@
 package com.banking.app.user.registration.web;
 
-import com.banking.app.user.registration.bo.Address;
-import com.banking.app.user.registration.bo.ContactInformation;
-import com.banking.app.user.registration.bo.Customer;
-import com.banking.app.user.registration.bo.KYCDetails;
-import com.banking.app.user.registration.dto.*;
+import com.banking.app.user.registration.bo.*;
+import com.banking.app.user.registration.bo.SavingAccount;
+import com.banking.app.user.registration.dto.request.*;
+import com.banking.app.user.registration.dto.response.LoginCreationResponse;
 import com.banking.app.user.registration.exception.customExceptions.DuplicateCusomerException;
-import com.banking.app.user.registration.service.AddressService;
-import com.banking.app.user.registration.service.ContactInformationService;
-import com.banking.app.user.registration.service.CustomerService;
-import com.banking.app.user.registration.service.KYCService;
-import org.apache.coyote.Response;
+import com.banking.app.user.registration.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/customer")
@@ -27,13 +24,19 @@ public class CustomerController {
     private final ContactInformationService contactInformationService;
     private final AddressService addressService;
     private final KYCService kycService;
+    private final LoginService loginService;
+    private final SavingAccountService savingAccountService;
 
     @Autowired
-    public CustomerController(final CustomerService customerService,final ContactInformationService contactInformationService,final AddressService addressService,final KYCService kycService){
+    public CustomerController(final CustomerService customerService,final ContactInformationService contactInformationService,
+                              final AddressService addressService,final KYCService kycService,final LoginService loginCreationService,
+                              final SavingAccountService savingAccountService){
         this.customerService= customerService;
         this.contactInformationService= contactInformationService;
         this.addressService= addressService;
         this.kycService = kycService;
+        this.loginService= loginCreationService;
+        this.savingAccountService= savingAccountService;
     }
     @PostMapping("/personal-info")
     public ResponseEntity<Customer> registerCustomer(final @RequestBody CustomerRequest customerRequest) throws DuplicateCusomerException {
@@ -68,8 +71,22 @@ public class CustomerController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(kycDetails);
     }
-    @GetMapping("/hey")
-    public void hey(){
-        System.out.println(KYCIdType.getKycIdType("1"));
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginCreationResponse> createLoginDetailsForCustomer(final @RequestBody LoginRequestCreation loginRequestCreation){
+        LOGGER.info("Entering createLoginDetailsForCustomer with customerId {}",loginRequestCreation.getCustomerId());
+        loginService.createLoginDetailsForNewCustomer(loginRequestCreation.getCustomerId());
+        LoginCreationResponse loginCreationResponse = new LoginCreationResponse();
+        loginCreationResponse.setCustomerId(loginCreationResponse.getCustomerId());
+        loginCreationResponse.setMessage("Login Id created Successfully");
+        LOGGER.info("Login Id created Successfully for {}",loginRequestCreation.getCustomerId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(loginCreationResponse);
+    }
+
+    @PostMapping("/account")
+    public ResponseEntity<SavingAccount> createSavingAccount(final @RequestBody SavingAccountRequest savingAccountRequest){
+        SavingAccount savingAccount = savingAccountService.createAccount(savingAccountRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savingAccount);
+
     }
 }

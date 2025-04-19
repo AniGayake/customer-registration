@@ -14,7 +14,7 @@ public class ContactInformation {
     private String phoneNumber;
     @Column(name = "alternate_phone_number")
     private String alternatePhoneNumber;
-
+    private String countryCode;
     public Long getContactId() {
         return contactId;
     }
@@ -55,14 +55,23 @@ public class ContactInformation {
         this.alternatePhoneNumber = alternatePhoneNumber;
     }
 
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
     @Override
     public String toString() {
         return "ContactInformation{" +
                 "contactId=" + contactId +
                 ", customerId=" + customerId +
-                ", emailId='" + email + '\'' +
+                ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", alternatePhoneNumber='" + alternatePhoneNumber + '\'' +
+                ", countryCode='" + countryCode + '\'' +
                 '}';
     }
 }

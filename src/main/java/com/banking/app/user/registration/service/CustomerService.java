@@ -1,7 +1,7 @@
 package com.banking.app.user.registration.service;
 
 import com.banking.app.user.registration.bo.Customer;
-import com.banking.app.user.registration.dto.CustomerRequest;
+import com.banking.app.user.registration.dto.request.CustomerRequest;
 import com.banking.app.user.registration.exception.customExceptions.CustomerRegistrationException;
 import com.banking.app.user.registration.exception.customExceptions.DuplicateCusomerException;
 import com.banking.app.user.registration.exception.customExceptions.MissingPANNumberException;
