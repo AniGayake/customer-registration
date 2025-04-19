@@ -1,6 +1,5 @@
 package com.banking.app.user.registration.service;
 
-import com.banking.app.user.registration.bo.Account;
 import com.banking.app.user.registration.bo.SavingAccount;
 import com.banking.app.user.registration.constants.CustomerRegistrationConstants;
 import com.banking.app.user.registration.dto.request.AccountRequest;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service

@@ -5,6 +5,7 @@ public class ContactInformationRequest {
     private String emailId;
     private String phoneNumber;
     private String alternatePhoneNumber;
+    private String countryCode;
 
     public Long getCustomerId() {
         return customerId;
@@ -38,6 +39,13 @@ public class ContactInformationRequest {
         this.alternatePhoneNumber = alternatePhoneNumber;
     }
 
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
 
     @Override
     public String toString() {

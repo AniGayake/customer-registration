@@ -3,6 +3,7 @@ package com.banking.app.user.registration.service;
 import com.banking.app.sms.utility.service.SMSService;
 import com.banking.app.user.registration.bo.ContactInformation;
 import com.banking.app.user.registration.bo.LoginDetails;
+import com.banking.app.user.registration.constants.CustomerRegistrationConstants;
 import com.banking.app.user.registration.repository.ContactInformationRepository;
 import com.banking.app.user.registration.repository.LoginRepository;
 import com.banking.app.user.registration.utils.GeneratePasswordUtility;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -62,7 +64,9 @@ public class LoginService {
             smsService.sendSMS(customerMobileNumber, CustomerRegistrationConstants.fromMobileNumber,"Dear "+customer.get()+ ", thanks for banking with Apna Bank. Your customer id is: "+
                     customerId + " and first time login password is:  "+password+" \n Please change this password to secure one after first time time.\n" +
                     "Thank you\n Apna Bank" );
-        } */
+        }
+
+       */
         LOGGER.info("Successfully sent SMS to the customer with customerId {}",customer);
     }
 

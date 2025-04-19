@@ -40,6 +40,7 @@ public class ContactInformationService {
         contactInformation.setEmail(contactInformationRequest.getEmailId());
         contactInformation.setPhoneNumber(contactInformationRequest.getPhoneNumber());
         contactInformation.setAlternatePhoneNumber(contactInformationRequest.getAlternatePhoneNumber());
+        contactInformation.setCountryCode(contactInformationRequest.getCountryCode());
         return contactInformation;
     }
 }
