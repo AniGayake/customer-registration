@@ -1,6 +1,6 @@
 package com.banking.app.user.registration.service;
 
-import com.banking.app.sms.utility.service.SMSService;
+//import com.banking.app.sms.utility.service.SMSService;
 import com.banking.app.user.registration.bo.ContactInformation;
 import com.banking.app.user.registration.bo.LoginDetails;
 import com.banking.app.user.registration.constants.CustomerRegistrationConstants;
@@ -20,13 +20,13 @@ public class LoginService {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginService.class);
     private final LoginRepository loginRepository;
     private final ContactInformationRepository contactInformationRepository;
-    private final SMSService smsService;
+//    private final SMSService smsService;
 
     public LoginService(final LoginRepository loginRepository,final ContactInformationRepository contactInformationRepository
-    ,final SMSService smsService) {
+    ) {
         this.loginRepository = loginRepository;
         this.contactInformationRepository = contactInformationRepository;
-        this.smsService = smsService;
+
     }
 
     public void createLoginDetailsForNewCustomer(final Long customerId){
@@ -60,13 +60,15 @@ public class LoginService {
             customerMobileNumber = contactInformation.get().getCountryCode()+ contactInformation.get().getPhoneNumber();
         }
 
-      /*  if(Objects.nonNull(customerMobileNumber)){
+       /* if(Objects.nonNull(customerMobileNumber)){
             smsService.sendSMS(customerMobileNumber, CustomerRegistrationConstants.fromMobileNumber,"Dear "+customer.get()+ ", thanks for banking with Apna Bank. Your customer id is: "+
                     customerId + " and first time login password is:  "+password+" \n Please change this password to secure one after first time time.\n" +
                     "Thank you\n Apna Bank" );
         }
 
-       */
+        */
+
+
         LOGGER.info("Successfully sent SMS to the customer with customerId {}",customer);
     }
 
