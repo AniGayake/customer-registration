@@ -61,4 +61,15 @@ public class GlobalExceptionHandler {
         ErrorMessage errorMessage = new ErrorMessage("KYC Registration Error",HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
         return new ResponseEntity<>(errorMessage,HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ResponseEntity<ErrorMessage> handleCustomerNotFoundException(final CustomerNotFoundException exception){
+        ErrorMessage errorMessage = new ErrorMessage("NOT FOUND",HttpStatus.NOT_FOUND.value(), exception.getMessage());
+        return new ResponseEntity<>(errorMessage,HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(BlankInputException.class)
+    public ResponseEntity<ErrorMessage> handleBlankInputException(final BlankInputException exception){
+        ErrorMessage errorMessage = new ErrorMessage("BLANK INPUT",HttpStatus.NOT_FOUND.value(), exception.getMessage());
+        return new ResponseEntity<>(errorMessage,HttpStatus.NOT_FOUND);
+    }
 }
