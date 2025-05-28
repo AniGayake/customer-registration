@@ -12,6 +12,7 @@ public class LoginDetails {
     @Id
     private Long customerId;
     private String password;
+    private String username;
     private LocalDateTime lastLogin;
     private LocalDateTime lastFailedLogin;
     private Integer failedAttempts;
@@ -24,6 +25,14 @@ public class LoginDetails {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

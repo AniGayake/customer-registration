@@ -1,13 +1,11 @@
 package com.banking.app.user.registration.web;
 
-import com.banking.app.user.registration.bo.CustomerIdentityProof;
 import com.banking.app.user.registration.dto.response.SearchCustomerInSystemResponse;
 import com.banking.app.user.registration.service.SearchCustomerService;
 import org.hibernate.QueryParameterException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigInteger;
 import java.util.Objects;
-import java.util.Optional;
+
 @RestController
 @RequestMapping("/customer")
 public class SearchCustomerController {

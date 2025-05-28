@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface ContactInformationRepository extends JpaRepository<ContactInformation,Long> {
     @Query(value = "Select email from contact_info where customer_id = ?", nativeQuery = true)
-    String getCustomerEmailid(Long customerId);
+    String getCustomerEmailId(Long customerId);
 
     @Query(value = "Select phone_number from contact_info where customer_id = ?", nativeQuery = true)
     String getCustomerMobileNumber(Long customerId);
@@ -19,5 +19,5 @@ public interface ContactInformationRepository extends JpaRepository<ContactInfor
     Optional<ContactInformation> findByCustomerId(Long customerId);
 
     @Query(value = "Select first_name from personal_info where customer_id = ?",nativeQuery = true)
-    Optional<String> findCustomerByCustomerId(Long customerId);
+    Optional<String> findCustomerFirstnameByCustomerId(Long customerId);
 }

@@ -15,6 +15,7 @@ public class ContactInformation {
     @Column(name = "alternate_phone_number")
     private String alternatePhoneNumber;
     private String countryCode;
+
     public Long getContactId() {
         return contactId;
     }

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.banking.app</groupId>
-	<artifactId>customer-registration</artifactId>
+	<artifactId>cmd-customer-registration</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>user-registration</name>
 	<url/>
@@ -60,6 +60,10 @@
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
 		</dependency>
 	</dependencies>
 
