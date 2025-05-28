@@ -40,7 +40,7 @@ public class SearchCustomerController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(customer);
         }else {
             LOGGER.info("Customer found, returning the response");
-            return ResponseEntity.status(HttpStatus.FOUND).body(customer);
+            return ResponseEntity.status(HttpStatus.OK).body(customer);
         }
     }
 
